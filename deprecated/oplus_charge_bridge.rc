@@ -1,0 +1,7 @@
+# oplus_charge_bridge - OPPO 充电节点 → MIUI 快充广播桥接
+
+service oplus_charge_bridge /system/bin/sh /vendor/bin/hw/oplus_charge_bridge.sh
+    class late_start
+    user system
+    group system
+    oneshot

@@ -1,0 +1,16 @@
+[package]
+name = "micharge_service"
+version = "2.0.0"
+edition = "2021"
+
+[dependencies]
+log = "0.4"
+android_logger = "0.13"
+binder-rust = "0.1.2"
+num-derive = "0.3"
+num-traits = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true
+panic = "abort"

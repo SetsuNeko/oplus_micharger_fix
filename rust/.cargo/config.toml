@@ -1,0 +1,7 @@
+[target.aarch64-linux-android]
+linker = "/home/setsuneko/DSH-Workgroup/BakaBuildPlafrom/ACK-6.12/prebuilts/ndk-r26/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang"
+rustflags = [
+    "-C", "link-arg=-fuse-ld=lld",
+    "-C", "link-arg=-Wl,--gc-sections",
+    "-L", "/home/setsuneko/DSH-Workgroup/BakaBuildPlafrom/ACK-6.12/prebuilts/ndk-r26/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/34"
+]

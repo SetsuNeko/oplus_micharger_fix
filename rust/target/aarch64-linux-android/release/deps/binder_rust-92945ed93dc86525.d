@@ -1,0 +1,10 @@
+/home/setsuneko/DSH-Workgroup/OPPOPad-OS3.3-Fix/charger_hal/rust/target/aarch64-linux-android/release/deps/libbinder_rust-92945ed93dc86525.rmeta: /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/lib.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/binder.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/parcel.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/service.rs
+
+/home/setsuneko/DSH-Workgroup/OPPOPad-OS3.3-Fix/charger_hal/rust/target/aarch64-linux-android/release/deps/libbinder_rust-92945ed93dc86525.rlib: /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/lib.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/binder.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/parcel.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/service.rs
+
+/home/setsuneko/DSH-Workgroup/OPPOPad-OS3.3-Fix/charger_hal/rust/target/aarch64-linux-android/release/deps/binder_rust-92945ed93dc86525.d: /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/lib.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/binder.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/parcel.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/service.rs
+
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/lib.rs:
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/binder.rs:
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/parcel.rs:
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/binder-rust-0.1.2/src/service.rs:

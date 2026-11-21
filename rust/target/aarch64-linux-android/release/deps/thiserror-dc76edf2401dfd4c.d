@@ -1,0 +1,10 @@
+/home/setsuneko/DSH-Workgroup/OPPOPad-OS3.3-Fix/charger_hal/rust/target/aarch64-linux-android/release/deps/libthiserror-dc76edf2401dfd4c.rmeta: /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/lib.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/aserror.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/display.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/provide.rs
+
+/home/setsuneko/DSH-Workgroup/OPPOPad-OS3.3-Fix/charger_hal/rust/target/aarch64-linux-android/release/deps/libthiserror-dc76edf2401dfd4c.rlib: /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/lib.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/aserror.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/display.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/provide.rs
+
+/home/setsuneko/DSH-Workgroup/OPPOPad-OS3.3-Fix/charger_hal/rust/target/aarch64-linux-android/release/deps/thiserror-dc76edf2401dfd4c.d: /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/lib.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/aserror.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/display.rs /home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/provide.rs
+
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/lib.rs:
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/aserror.rs:
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/display.rs:
+/home/setsuneko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.69/src/provide.rs:

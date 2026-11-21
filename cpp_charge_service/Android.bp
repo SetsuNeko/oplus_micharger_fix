@@ -1,0 +1,42 @@
+// This file is auto-generated. Do not edit!
+
+aidl_interface {
+    name: "vendor.xiaomi.hardware.micharge",
+    version: "2",
+    root: "aidl",
+    language: "cpp",
+    srcs: [
+        "aidl/vendor/xiaomi/hardware/micharge/IMiCharge.aidl",
+    ],
+    includes: ["aidl"],
+    unstable: true,
+}
+
+cc_binary {
+    name: "vendor.xiaomi.hardware.micharge-service",
+    defaults: ["micharge_defaults"],
+    srcs: [
+        "MiChargeService.cpp",
+        "aidl/vendor/xiaomi/hardware/micharge/IMiCharge.aidl",
+    ],
+    shared_libs: [
+        "libbinder_ndk",
+        "libutils",
+        "liblog",
+        "vendor.xiaomi.hardware.micharge-V2-ndk",
+    ],
+    target: {
+        android: {
+            cflags: ["-Wall", "-Werror"],
+        },
+    },
+}
+
+cc_defaults {
+    name: "micharge_defaults",
+    target: {
+        android: {
+            cflags: ["-Wall", "-Werror"],
+        },
+    },
+}

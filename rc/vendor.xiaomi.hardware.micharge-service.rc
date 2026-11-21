@@ -1,0 +1,9 @@
+# vendor.xiaomi.hardware.micharge-service - MIUI Charge HAL Bridge
+# Reads OPPO oplus_chg nodes and exposes them via MIUI IMiCharge AIDL interface
+
+service micharge-hal /vendor/bin/hw/vendor.xiaomi.hardware.micharge-service
+    interface aidl vendor.xiaomi.hardware.micharge.IMiCharge/default
+    class hal
+    user system
+    group system
+    seclabel u:r:hal_micharge_default:s0

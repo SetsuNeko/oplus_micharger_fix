@@ -1,0 +1,28 @@
+# hal_micharge - MIUI Charge HAL Bridge SELinux policy
+
+type hal_micharge_default;
+typeattribute hal_micharge_default coredomain;
+typeattribute hal_micharge_default hal_micharge_domain;
+
+type hal_micharge_default_exec;
+typeattribute hal_micharge_default_exec exec_type;
+typeattribute hal_micharge_default_exec file_type;
+
+# Allow init to start this service
+init_daemon_domain(hal_micharge_default)
+
+# Allow binder calls
+binder_call(hal_micharge_default)
+
+# Allow logging
+log_write(hal_micharge_default)
+
+# Allow reading sysfs (power_supply, oplus_chg, etc.)
+allow hal_micharge_default sysfs:dir read;
+allow hal_micharge_default sysfs:file read;
+
+# Allow reading /proc
+allow hal_micharge_default proc:file read;
+
+# Allow service management attributes
+typeattribute hal_micharge_default init_daemon_domain;

@@ -1,0 +1,89 @@
+;; ============================================================================
+;; vendor.oplus.sandronedevteam.michager-service —— MIUI 快充状态适配服务
+;; 职责：只读 OPPO 充电 sysfs 节点（协议/电量/电压电流），
+;;       在充电状态变化时广播 MIUI 快充协议（ACTION_QUICK_CHARGE_TYPE /
+;;       ACTION_SOC_DECIMAL），驱动 SystemUI 快充动画与电量小数显示。
+;; 权限最小化：sysfs 只读；无任何 device/property 写权限；
+;;            通过 fork+exec 调用 /system/bin/am 发广播（不换域执行）。
+;; ============================================================================
+
+;; ---------- 类型定义 ----------
+(type vendor_oplus_michager_service)
+(roletype object_r vendor_oplus_michager_service)
+(type vendor_oplus_michager_service_exec)
+(roletype object_r vendor_oplus_michager_service_exec)
+
+(typeattributeset domain (vendor_oplus_michager_service))
+(typeattributeset file_type (vendor_oplus_michager_service_exec))
+(typeattributeset exec_type (vendor_oplus_michager_service_exec))
+(typeattributeset vendor_file_type (vendor_oplus_michager_service vendor_oplus_michager_service_exec))
+
+;; 域级宽容（只影响本域，不影响全局 enforcing）：
+;; 首次上线用于收集 avc 漏项，全部补齐后删除此行即为生产策略
+(typepermissive vendor_oplus_michager_service)
+
+;; ---------- init 拉起与域转换 ----------
+(typetransition init_30_0 vendor_oplus_michager_service_exec process vendor_oplus_michager_service)
+(allow init_30_0 vendor_oplus_michager_service_exec (file (read getattr map execute open)))
+(allow init_30_0 vendor_oplus_michager_service (process (transition siginh rlimitinh)))
+(dontaudit init_30_0 vendor_oplus_michager_service (process (noatsecure)))
+(allow vendor_oplus_michager_service vendor_oplus_michager_service_exec (file (entrypoint read getattr map execute open)))
+
+;; ---------- 进程 / fd / socket 基础 ----------
+(allow vendor_oplus_michager_service self (process (fork sigchld sigkill sigstop signull getsched setsched)))
+(allow vendor_oplus_michager_service self (fd (use)))
+(allow vendor_oplus_michager_service self (file (read write open getattr map lock append ioctl)))
+(allow vendor_oplus_michager_service self (fifo_file (read write open getattr lock append ioctl)))
+(allow vendor_oplus_michager_service self (unix_stream_socket (create getattr setattr read write bind listen accept connect getopt setopt shutdown connectto)))
+(allow vendor_oplus_michager_service self (unix_dgram_socket (create getattr setattr read write bind connect getopt setopt shutdown sendto)))
+
+;; ---------- sysfs 只读（充电节点） ----------
+(allow vendor_oplus_michager_service sysfs_30_0 (dir (search getattr open read)))
+(allow vendor_oplus_michager_service sysfs_30_0 (lnk_file (read getattr open)))
+(allow vendor_oplus_michager_service vendor_sysfs_usb_supply (dir (search getattr open read)))
+(allow vendor_oplus_michager_service vendor_sysfs_usb_supply (file (read open getattr map)))
+(allow vendor_oplus_michager_service vendor_sysfs_usb_supply (lnk_file (read getattr open)))
+(allow vendor_oplus_michager_service vendor_sysfs_battery_supply (dir (search getattr open read)))
+(allow vendor_oplus_michager_service vendor_sysfs_battery_supply (file (read open getattr map)))
+(allow vendor_oplus_michager_service vendor_sysfs_battery_supply (lnk_file (read getattr open)))
+
+;; ---------- 执行 am（直接 execve ART app_process64 ELF，不经 shell） ----------
+;; /apex/com.android.art/bin/app_process64 与 framework jar 均为 system_file
+;; （OPPO 先例：bspFwUpdate_30_0 / oplusbootstats_30_0 均允许 system_file execute_no_trans）
+(allow vendor_oplus_michager_service system_file_30_0 (dir (search open read getattr)))
+(allow vendor_oplus_michager_service system_file_30_0 (file (execute execute_no_trans map read getattr open)))
+(allow vendor_oplus_michager_service system_file_30_0 (lnk_file (read getattr open)))
+(allow vendor_oplus_michager_service dalvikcache_data_file_30_0 (dir (search open read getattr)))
+(allow vendor_oplus_michager_service dalvikcache_data_file_30_0 (file (read open getattr map)))
+
+;; ---------- /dev 基础节点 ----------
+(allow vendor_oplus_michager_service binder_device_30_0 (chr_file (open read write ioctl map getattr)))
+(allow vendor_oplus_michager_service null_device_30_0 (chr_file (open read write getattr map)))
+(allow vendor_oplus_michager_service zero_device_30_0 (chr_file (open read getattr map)))
+(allow vendor_oplus_michager_service random_device_30_0 (chr_file (open read getattr map)))
+(allow vendor_oplus_michager_service properties_device_30_0 (dir (search open read getattr)))
+(allow vendor_oplus_michager_service properties_device_30_0 (file (read open getattr map)))
+(allow vendor_oplus_michager_service properties_serial_30_0 (file (read open getattr map)))
+(allow vendor_oplus_michager_service default_prop_30_0 (file (read open getattr map)))
+(allow vendor_oplus_michager_service vendor_default_prop_30_0 (file (read open getattr map)))
+
+;; ---------- logd 日志 ----------
+(allow vendor_oplus_michager_service logd_30_0 (unix_stream_socket (connectto)))
+(allow vendor_oplus_michager_service logd_30_0 (fd (use)))
+(allow vendor_oplus_michager_service logdw_socket_30_0 (sock_file (write open getattr)))
+
+;; ---------- binder：向 system_server 发送广播 ----------
+(allow vendor_oplus_michager_service servicemanager_30_0 (binder (call transfer)))
+(allow servicemanager_30_0 vendor_oplus_michager_service (binder (call transfer)))
+(allow servicemanager_30_0 vendor_oplus_michager_service (dir (search)))
+(allow servicemanager_30_0 vendor_oplus_michager_service (file (read open)))
+(allow servicemanager_30_0 vendor_oplus_michager_service (process (getattr)))
+(allow vendor_oplus_michager_service system_server_30_0 (binder (call transfer)))
+(allow system_server_30_0 vendor_oplus_michager_service (binder (call transfer)))
+(allow system_server_30_0 vendor_oplus_michager_service (fd (use)))
+(allow vendor_oplus_michager_service system_server_30_0 (fd (use)))
+
+;; ---------- ART 运行时读 /proc ----------
+(allow vendor_oplus_michager_service proc_30_0 (dir (search getattr open read)))
+(allow vendor_oplus_michager_service proc_30_0 (file (read open getattr map)))
+(allow vendor_oplus_michager_service proc_30_0 (lnk_file (read getattr open)))
